@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Todo :todos="todos"/>
+    <Todo :todos="todos" @todo-item-changed="Changed"/>
   </div>
 </template>
 
@@ -25,6 +25,17 @@ data() {
           title: 'Harmadik teendő'
         },
         ]
+    }
+  },
+  methods:{
+    Changed(e){
+        this.todos.map(function(todo){
+          if(todo.title !=e.original.title){
+            return todo
+          }
+          todo.title = e.new.title
+          return todo
+        })
     }
   }
 }

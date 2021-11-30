@@ -3,7 +3,9 @@
       <ul>
           <Todoitem v-for="todo in todos"
             v-bind:key = "todo.title" 
-            :title="todo.title" />
+            :todo="todo"
+            @todo-item-changed="Changed"
+             />
         
       </ul>
   </div>
@@ -13,7 +15,12 @@
 import Todoitem from './Todoitem.vue'
 export default {
     props:['todos'],
-    components: {Todoitem}
+    components: {Todoitem},
+    methods:{
+        Changed(e){
+            this.$emit('todo-item-changed', e)
+        }
+    }
 
 }
 </script>
